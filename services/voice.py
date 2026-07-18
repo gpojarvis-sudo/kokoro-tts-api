@@ -4,24 +4,6 @@ import httpx
 API_KEY = os.getenv("ELEVENLABS_API_KEY", "")
 VOICE_ID = "CwhRBWXzGAHq8TQ4Fs17"
 
-
-async def verify_connection():
-    headers = {
-        "xi-api-key": API_KEY
-    }
-
-    async with httpx.AsyncClient() as client:
-        response = await client.get(
-            "https://api.elevenlabs.io/v1/voices",
-            headers=headers
-        )
-
-    return {
-        "status_code": response.status_code,
-        "response": response.json()
-    }
-
-
 async def generate_voice(text: str):
 
     headers = {
@@ -41,14 +23,6 @@ async def generate_voice(text: str):
             json=payload
         )
 
-    if response.status_code != 200:
-        return {
-            "success": False,
-            "status_code": response.status_code,
-            "error": response.text
-        }
+    response.raise_for_status()
 
-    return {
-        "success": True,
-        "audio_size": len(response.content)
-    }
+    return response.content
