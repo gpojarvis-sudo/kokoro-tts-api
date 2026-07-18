@@ -4,6 +4,14 @@ import httpx
 API_KEY = os.getenv("ELEVENLABS_API_KEY", "")
 
 
+def generate_voice(text: str):
+    return {
+        "success": True,
+        "received_text": text,
+        "length": len(text)
+    }
+
+
 async def verify_connection():
     if not API_KEY:
         return {
