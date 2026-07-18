@@ -1,16 +1,25 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
+
+class TTSRequest(BaseModel):
+    text: str
+
+
 @app.get("/")
-def home():
+async def home():
     return {
-        "status": "ok",
-        "message": "AI Video Factory API Running"
+        "status": "running"
     }
 
-@app.get("/health")
-def health():
+
+@app.post("/tts")
+async def tts(req: TTSRequest):
+
     return {
-        "status": "healthy"
+        "success": True,
+        "received_text": req.text,
+        "length": len(req.text)
     }
