@@ -1,1 +1,5 @@
-# Request Models
+from pydantic import BaseModel
+
+
+class TTSRequest(BaseModel):
+    text: str
