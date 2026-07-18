@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from models.request import TTSRequest
+from routers.tts import router as tts_router
 
 app = FastAPI()
 
@@ -11,11 +11,4 @@ async def home():
     }
 
 
-@app.post("/tts")
-async def tts(req: TTSRequest):
-
-    return {
-        "success": True,
-        "received_text": req.text,
-        "length": len(req.text)
-    }
+app.include_router(tts_router)
