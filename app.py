@@ -1,11 +1,7 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from models.request import TTSRequest
 
 app = FastAPI()
-
-
-class TTSRequest(BaseModel):
-    text: str
 
 
 @app.get("/")
