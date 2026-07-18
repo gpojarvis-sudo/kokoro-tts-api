@@ -18,11 +18,14 @@ async def verify_connection():
 
     return {
         "status_code": response.status_code,
-        "response": response.json()
+        "response": response.json)
     }
 
 
-async def generate_voice(text: str):
+print("=" * 50)
+print("TEXT LENGTH:", len(text))
+print(text[:500])
+print("=" * 50) async def generate_voice(text: str):
     headers = {
         "xi-api-key": API_KEY,
         "Content-Type": "application/json"
