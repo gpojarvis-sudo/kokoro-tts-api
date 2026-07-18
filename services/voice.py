@@ -5,27 +5,12 @@ API_KEY = os.getenv("ELEVENLABS_API_KEY", "")
 VOICE_ID = "CwhRBWXzGAHq8TQ4Fs17"
 
 
-async def verify_connection():
-    headers = {
-        "xi-api-key": API_KEY
-    }
+async def generate_voice(text: str):
+    print("=" * 50)
+    print("TEXT LENGTH:", len(text))
+    print(text[:500])
+    print("=" * 50)
 
-    async with httpx.AsyncClient() as client:
-        response = await client.get(
-            "https://api.elevenlabs.io/v1/voices",
-            headers=headers
-        )
-
-    return {
-        "status_code": response.status_code,
-        "response": response.json)
-    }
-
-
-print("=" * 50)
-print("TEXT LENGTH:", len(text))
-print(text[:500])
-print("=" * 50) async def generate_voice(text: str):
     headers = {
         "xi-api-key": API_KEY,
         "Content-Type": "application/json"
