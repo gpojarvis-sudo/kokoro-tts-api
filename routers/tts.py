@@ -7,7 +7,8 @@ router = APIRouter()
 
 @router.post("/tts")
 async def tts(req: TTSRequest):
-    return generate_voice(req.text)
+    return await 
+    generate_voice(req.text)
 
 
 @router.get("/verify")
